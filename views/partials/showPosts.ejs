@@ -1,0 +1,146 @@
+<!-------  Posts  --------->
+
+<%for(let i=(posts.length-1);i>=0 ;i--){%>
+
+<div class="post-card">
+    <div class="user-info">
+        <a href="user/profile/<%=posts[i].username%>">
+            <img src="<%=posts[i].userPicture%>" alt="User Profile Pic" height="50px" width="50px"
+                class="profile-image" />
+        </a>
+
+        <div>
+            <a href="user/profile/<%=posts[i].username%>" class="post-name">
+                <h5 style="margin-bottom: 0px;"><%=posts[i].fName %> <%=posts[i].lName %></h5>
+            </a>
+            <p style="margin-bottom: 0px;">
+
+                <%const date = new Date(posts[i].createdAt)%>
+                <%const now = new Date()%>
+                <%const timeGap = now-date%>
+                <%if(timeGap<(60*1000)){%>
+                few seconds ago..
+                <%}else if(timeGap<(60*1000*60)){ %>
+                <%= Math.floor(timeGap/(60*1000)) %> minutes ago..
+                <%}else if(timeGap<(60*1000*60*24)){ %>
+                <%= Math.floor(timeGap/(60*1000*60)) %> hours ago..
+                <%}else if(timeGap<(60*1000*60*24)){ %>
+                <%= Math.floor(timeGap/(60*1000*60*24)) %> hours ago..
+                <%}else{%>
+                <%=date.getDate()%>/<%=date.getMonth()%>/<%=date.getFullYear()%>
+                <%}%>
+            
+  
+  
+          </p>
+          <p><%=posts[i].location%></p>
+
+        </div>
+
+        <!-- authentication condition -->
+        <div class="post-options">
+            <%if(currentUser._id.toString()===posts[i].userId.toString()){%>
+
+            <!-- post Options -->
+
+
+
+            <a href="/post/update/<%=posts[i]._id%>">
+                <button type="submit" class="delete-button"> <i class="fas fa-pen-alt"
+                        style="color:rgb(0, 140, 255)"></i></button>
+
+            </a>
+            <%}%>
+          <%if(currentUser._id.toString()===posts[i].userId.toString() || currentUser.isAdmin){%>
+
+            <form action="/post/delete/<%=posts[i]._id%>" method="POST">
+                <button type="submit" class="delete-button"> <i class="fas fa-trash-alt"
+                        style="color: red;"></i></button>
+
+            </form>
+
+
+            <%}%>
+      </div>
+      </div>
+  
+      <p class="post-desc">
+        <%=posts[i].desc %>
+            </p>
+
+            <!-- like -->
+
+            <form action="/like/<%=posts[i]._id%>" method="POST">
+                <div class="post-like">
+
+                    <%if(posts[i].likes.includes(user._id)){%>
+                    <button type="submit" style="border: 0 solid ; background-color: rgba(230, 230, 230, 0.829);"><i
+                            class="fas fa-thumbs-up fa-2x " style="color: rgb(9, 132, 247);"></i></button>
+                    <%}else{%>
+                    <button type="submit" style="border: 0 solid ; background-color: rgba(230, 230, 230, 0.829);"><i
+                            class="fas fa-thumbs-up fa-2x " style="color: rgb(168, 168, 168);"></i></button>
+                    <%}%>
+                <a href="/like/<%=posts[i]._id%>">
+                    <p style="margin-bottom: 0;margin-left: 1rem; color: rgb(68, 68, 68);">
+                        <%=posts[i].likes.length%>
+                    </p>
+                    </a>
+                    <!-- <button type="submit" style="border: 0 solid ; background-color: rgba(230, 230, 230, 0.829);"><i
+                class="fas fa-thumbs-up fa-2x "></i></button> -->
+                </div>
+            </form>
+
+            <!------------------- Comment Input -------------------->
+
+            <div class="post-comment-container">
+                <div class="post-card-comments">
+                    <form action="/comment/add/<%=posts[i]._id%>" method="POST">
+                        <div class="post-comment-input">
+                            <img src="<%=user.avatar%>" alt="User Profile Pic" height="50px" width="50px"
+                                class="profile-image" />
+
+                            <textarea name="comment" class="form-control post-comment-textarea"
+                                id="exampleFormControlTextarea1" rows="1" placeholder="Write a comment..."></textarea>
+                            <button type="submit" class="btn btn-primary post-botton">
+                                Comment
+                            </button>
+
+                        </div>
+                    </form>
+
+                    <!--------------- Comments on Post  ------------------>
+                    <%for(let j=(posts[i].comments.length-1);j>=0 ;j--){%>
+                    <div class="post-card-comment-elements">
+                        <img src="<%=posts[i].comments[j].userPicture%>" alt="User Profile Pic" height="50px"
+                            width="50px" class="profile-image" />
+                        <div class="post-comment">
+                            <h6><%=posts[i].comments[j].fName%> <%=posts[i].comments[j].lName%></h6>
+                            <p><%=posts[i].comments[j].comment%></p>
+                        </div>
+
+
+                        <!-- Comment Options -->
+                        <div class="post-options">
+                            <%if(currentUser._id.toString()===posts[i].comments[j].userId.toString()){%>
+
+                            <a href="/comment/update/<%=posts[i]._id%>/<%=posts[i].comments[j].id%>">
+                                <button type="submit" class="delete-button"> <i class="fas fa-pen-alt"
+                                        style="color:rgb(0, 140, 255)"></i></button>
+
+                            </a>
+                            <%}%>
+                  <%if(currentUser._id.toString()===posts[i].comments[j].userId.toString() || currentUser.isAdmin){%>
+
+                            <form action="/comment/delete/<%=posts[i]._id%>/<%=posts[i].comments[j].id%>" method="POST">
+                                <button type="submit" class="delete-button"> <i class="fas fa-trash-alt"
+                                        style="color: red;"></i></button>
+                            </form>
+                            <%}%>
+              </div>
+              </div>
+              <%}%>
+                        </div>
+                    </div>
+                </div>
+
+                <%}%>

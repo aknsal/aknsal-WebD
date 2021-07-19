@@ -1,0 +1,36 @@
+<%-include("./partials/header")%>
+
+<%-include("./partials/navbar")%>
+
+
+
+
+
+<div class="container container-newsfeed">
+  <br />
+  <h2>Hello <%=currentUser.fName%>,</h2>
+  <br>
+  <form action="/post/create" method="POST">
+    <div class="form-group create-post-container">
+      <label for="create-post-label">Share Your Covid Experiance</label>
+      <textarea name="desc" class="form-control create-post" id="exampleFormControlTextarea1" rows="3"
+        placeholder="Write Something..." required></textarea>
+      <div class="post-button-container">
+        <button type="submit" class="btn btn-primary post-botton">Post</button>
+      </div>
+    </div>
+  </form>
+
+  <div class="filter">
+    <form class="d-flex" style="margin:0 1rem; max-width: 330px;" action="/post/location" method="POST">
+      <input class="form-control me-2" name="location" type="search" placeholder="Filter Post according to location"
+        aria-label="Search">
+      <button class="btn btn-outline-success" type="submit">Filter</button>
+    </form>
+  </div>
+
+  <%-include("./partials/showPosts")%>
+
+</div>
+
+<%-include("./partials/footer")%>

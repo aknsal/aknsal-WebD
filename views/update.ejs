@@ -1,0 +1,82 @@
+<%-include("./partials/header")%>
+
+
+
+<main class="form-signin register-form">
+  <form action="/user/update/<%=user._id %>" method="post" enctype="multipart/form-data">
+    <div class="container-fluid login-form">
+      <h1 class="h3 mb-3 fw-normal display-6">Update Profile</h1>
+
+
+
+      <br>
+      <div class="update-details-container">
+        <div class="update-image-container">
+          <img src="<%=user.avatar%>" alt="" width="250px" height="250px">
+          <div class="form-group" style="margin-left: 2rem;">
+            <label for="exampleFormControlFile1">input file</label>
+            <input name="image" type="file" class="form-control-file" id="exampleFormControlFile1">
+          </div>
+        </div>
+      </div>
+
+      <div class="name-container">
+        <div class="form-floating" style="margin-right:5px;">
+
+          <input name="fName" type="text" value=<%=user.fName %> class="form-control" id="floatingInput"
+            placeholder="First Name" required>
+          <label for="floatingInput">First Name</label>
+        </div>
+        <div class="form-floating" style="margin-left:5px;">
+          <input name="lName" type="text" value=<%=user.lName %> class="form-control" id="floatingInput"
+            placeholder="Second Name" required>
+          <label for="floatingInput">Last Name</label>
+        </div>
+      </div>
+
+
+      <div class="form-floating" style="margin-top:0;">
+        <input name="username" type="string" value=<%=user.username %> class="form-control" id="floatingInput"
+          placeholder="name@example.com" required>
+        <label for="floatingInput">Username</label>
+      </div>
+
+      <div class="form-floating" style="margin-top:0;">
+        <input name="email" type="email" value=<%=user.email %> class="form-control" id="floatingInput" required>
+        <label for="floatingInput">Email address</label>
+      </div>
+      <div id="date-picker-example" class="md-form md-outline input-with-post-icon datepicker">
+        <label for="example">D.O.B</label>
+        <input placeholder="Select date" name="dob" type="date" id="example" class="form-control">
+      </div>
+      <br>
+      <label for="floatingInput">Bio</label>
+      <textarea name="about" class="form-control update-about" id="exampleFormControlTextarea1" rows="3"
+        placeholder="Write Something..."><%=user.about %></textarea>
+
+
+
+      <!-- <div class="form-floating">
+        <input name="dob" type="date" class="form-control" id="floatingPassword" placeholder="Password" required>
+        <label for="floatingPassword">DOB</label>
+      </div> -->
+
+
+      <br>
+
+      <button class="w-100 btn btn-lg btn-success" type="submit">Update Details</button>
+      <br>
+      <br>
+
+  </form>
+  <form action="/user/updatepassword" method="GET">
+    <button class="w-100 btn btn-lg btn-primary">Change Password</button>
+  </form>
+  <form action="/user/deleteaccount/<%=user._id%>" method="POST">
+    <button class="w-100 btn btn-lg btn-danger" type="submit">Delete Account</button>
+  </form>
+  <p class="mt-5 mb-3 text-muted">&copy; 2017–2021</p>
+</main>
+
+<%-include("./partials/footer")%>
+</div>

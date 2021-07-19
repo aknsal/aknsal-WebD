@@ -1,0 +1,102 @@
+<%-include("./partials/header")%>
+
+<div class="container-fluid">
+
+
+  <style>
+    .bd-placeholder-img {
+      font-size: 1.125rem;
+      text-anchor: middle;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      user-select: none;
+    }
+
+    @media (min-width: 768px) {
+      .bd-placeholder-img-lg {
+        font-size: 3.5rem;
+      }
+    }
+  </style>
+
+
+  <!-- Custom styles for this template -->
+  <link href="signin.css" rel="stylesheet">
+  </head>
+
+  <body class="text-center">
+
+    <main class="form-signin register-form">
+      <form action="/register" method="post">
+        <div class="container-fluid login-form">
+          <h1 class="h3 mb-3 fw-normal display-6">Please Register</h1>
+
+          <!-- <div class="form-floating">
+        <input type="text" class="form-control" id="floatingInput" placeholder="Full Name">
+        <label for="floatingInput">Full Name</label>
+      </div> -->
+
+          <br>
+
+
+          <div class="name-container">
+            <div class="form-floating" style="margin-right:5px;">
+              <input name="fName" type="text" class="form-control" id="floatingInput" placeholder="First Name" required>
+              <label for="floatingInput">First Name*</label>
+            </div>
+            <div class="form-floating" style="margin-left:5px;">
+              <input name="lName" type="text" class="form-control" id="floatingInput" placeholder="Second Name"
+                required>
+              <label for="floatingInput">Second Name*</label>
+            </div>
+          </div>
+
+
+          <div class="form-floating" style="margin-top:0;">
+            <input name="username" type="string" class="form-control" id="floatingInput" placeholder="name@example.com"
+              required>
+            <label for="floatingInput">Username*</label>
+          </div>
+
+          <div class="form-floating" style="margin-top:0;">
+            <input name="email" type="email" class="form-control" id="floatingInput" placeholder="name@example.com"
+              required>
+            <label for="floatingInput">Email address*</label>
+          </div>
+          <div class="form-floating" style="margin-top:0;">
+            <input name="location" type="text" class="form-control" id="floatingInput" placeholder="name@example.com"
+              required>
+            <label for="floatingInput">Location*</label>
+          </div>
+          <div id="date-picker-example" class="md-form md-outline input-with-post-icon datepicker form-floating">
+
+            <input placeholder="D.O.B" name="dob" type="date" id="floatingDate" class="form-control">
+            <label for="floatingDate">D.O.B</label>
+          </div>
+          <div class="form-floating">
+            <input name="password" type="password" class="form-control" id="floatingPassword" placeholder="Password"
+              required>
+            <label for="floatingPassword">Password*</label>
+          </div>
+          <div class="form-floating">
+            <input name="confirmPassword" type="password" class="form-control" id="floatingPassword"
+              placeholder="Password" required>
+            <label for="floatingPassword">Confirm Password*</label>
+          </div>
+          <br>
+
+          <button class="w-100 btn btn-lg btn-primary" type="submit">Sign up</button>
+          <br>
+          <br>
+          <div class="register-below-submit">
+            <a href="/login"> Already have an account? Login Here</a>
+          </div>
+
+      </form>
+    </main>
+
+
+</div>
+
+
+<%-include("./partials/footer")%>

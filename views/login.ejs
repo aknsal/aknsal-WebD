@@ -1,0 +1,50 @@
+<%-include("./partials/header")%>
+
+
+
+
+
+<div class="container-fluid login-form">
+
+
+
+
+  <main class="form-signin">
+    <h3 class="h3 mb-3 fw-normal display-6">Sign in</h3>
+
+
+
+    <form action="/login" method="post">
+
+      <br>
+
+
+
+
+      <div class="form-floating">
+        <input type="text" name="username" class="form-control" id="floatingInput" placeholder="name@example.com">
+        <label for="floatingInput">Username</label>
+      </div>
+      <div class="form-floating">
+        <input type="password" name="password" class="form-control" id="floatingPassword" placeholder="Password">
+        <label for="floatingPassword">Password</label>
+      </div>
+
+
+      <br>
+      <button class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
+      <br>
+      <br>
+
+      <div class="login-below-submit">
+        <a href="/forgotPassword">Forgot Password?</a>
+        <a href="/register"> New Here? Register Now</a>
+      </div>
+    </form>
+  </main>
+
+
+</div>
+
+
+<%-include("./partials/footer")%>

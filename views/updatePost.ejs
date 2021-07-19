@@ -1,0 +1,36 @@
+<%-include("./partials/header")%>
+
+<main class="form-signin update-post-form">
+    <form action="/post/update/<%=post._id%>" method="POST">
+        <div class="container-fluid">
+            <h1 class="h3 mb-3 fw-normal display-6">Update Post</h1>
+
+            <br>
+
+            <br>
+            <label for="floatingInput">Update Post</label>
+            <textarea name="desc" class="form-control update-about" id="exampleFormControlTextarea1" rows="5"
+                placeholder="Write Something..." required><%=post.desc %></textarea>
+
+
+
+            <!-- <div class="form-floating">
+        <input name="dob" type="date" class="form-control" id="floatingPassword" placeholder="Password" required>
+        <label for="floatingPassword">DOB</label>
+      </div> -->
+
+
+            <br>
+
+            <button class="w-100 btn btn-lg btn-primary" type="submit">Update Post</button>
+            <br>
+            <br>
+            <div class="register-below-submit">
+                <a href="/newsfeed"> NewsFeed </a>
+            </div>
+            <p class="mt-5 mb-3 text-muted">&copy; 2017–2021</p>
+    </form>
+</main>
+
+<%-include("./partials/footer")%>
+</div>
