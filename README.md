@@ -1,7 +1,15 @@
 # Covin-Express
 A networking site built on nodejs and express where users can share there convid expeiance.
 
-Checkout the Website [Here]()
+Checkout the Website [Here](https://agile-sea-39604.herokuapp.com/)
+
+Try with admin credentials
+username:admin
+password:admin
+
+Compare using Normal account
+username:lorem
+password:lorem
 
 ## Features
 - Users can Create an account and log into their accounts
@@ -274,12 +282,13 @@ if (post.userId.toString() === req.user._id.toString() || req.user.isAdmin) {
         }
 ```
 Try with admin credentials
-username:
-password:
+username:admin
+password:admin
 
 Compare using Normal account
-username:
-password:
+username:lorem
+password:lorem
+
 
 > By default, a normal account is created
 
@@ -331,7 +340,7 @@ If we click on like button a post request would be made at `/like/{post_id}` whe
 Post schema consist of a field named comments with a type of array. Comments are stored here in the form an object with many key value pairs storing comment details.
 A comment can be added by making a post request at `/comment/add/{id}` where `{id}` is the post id.
 A comment object looks like this
-```javscript
+```javascript
     try {
         const randomId = Math.random().toString();
         const post = await Post.findById(req.params.id);
@@ -360,8 +369,18 @@ A comment object looks like this
 To Update a comment the old post has to be remove dand a new post has to be added
 To remove a comment user `$pull` instead of `$push`.
 
+## Search/Filter Queries
+There are two search/Filter options
+- Search User
+This query will search all the User and will give a list of users having the Exact First name.
+
+- Filter By Location
+Both the schemas store location in them. When a post is created the current location of user is stored in a postand will appear in the posts. One can filter by these value by searching the exact location (mostly country). 
+
+## Follow/Unfollow a user
+This option appear on the user profile page. If the user is in its own profile page then instead of Follow / Unfollow option Edit option will be availble which can update user details. By clicking on the follow unfollow button the user who clicked is addedd as a follower in the other user and the other user will appear in his followings. Basically userid is added/removed in both followers and followings array.
 
 
 
 
-## Jai WebD
+## Jai WebD!
