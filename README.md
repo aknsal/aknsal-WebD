@@ -331,7 +331,7 @@ If we click on like button a post request would be made at `/like/{post_id}` whe
 Post schema consist of a field named comments with a type of array. Comments are stored here in the form an object with many key value pairs storing comment details.
 A comment can be added by making a post request at `/comment/add/{id}` where `{id}` is the post id.
 A comment object looks like this
-```javscript
+```javascript
     try {
         const randomId = Math.random().toString();
         const post = await Post.findById(req.params.id);
@@ -360,8 +360,15 @@ A comment object looks like this
 To Update a comment the old post has to be remove dand a new post has to be added
 To remove a comment user `$pull` instead of `$push`.
 
+## Search/Filter Queries
+There are two search/Filter options
+- Search User
+This query will search all the User and will give a list of users having the Exact First name.
+
+- Filter By Location
+Both the schemas store location in them. When a post is created the current location of user is stored in a postand will appear in the posts. One can filter by these value by searching the exact location (mostly country). 
 
 
 
 
-## Jai WebD
+## Jai WebD!
