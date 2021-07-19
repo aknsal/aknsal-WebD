@@ -289,6 +289,8 @@ Compare using Normal account
 username:lorem
 password:lorem
 
+![Normal User](https://ibb.co/XLJ6YpV)
+
 > By default, a normal account is created
 
 Here if the userId stored in the post to be deleted is equal to the logged in user he/she is authenticated and can delete a post also there is an or condition that if the current user (logged in user) is an admin he can delete the post.
