@@ -289,7 +289,6 @@ Compare using Normal account
 username:lorem
 password:lorem
 
-![Normal User](https://ibb.co/XLJ6YpV)
 
 > By default, a normal account is created
 
@@ -377,6 +376,9 @@ This query will search all the User and will give a list of users having the Exa
 
 - Filter By Location
 Both the schemas store location in them. When a post is created the current location of user is stored in a postand will appear in the posts. One can filter by these value by searching the exact location (mostly country). 
+
+## Follow/Unfollow a user
+This option appear on the user profile page. If the user is in its own profile page then instead of Follow / Unfollow option Edit option will be availble which can update user details. By clicking on the follow unfollow button the user who clicked is addedd as a follower in the other user and the other user will appear in his followings. Basically userid is added/removed in both followers and followings array.
 
 
 
