@@ -4,16 +4,12 @@ A networking site built on nodejs and express where users can share there convid
 Checkout the Website [Here](https://agile-sea-39604.herokuapp.com/)
 
 Try with admin credentials
-
-username:admin
-
-password:admin
+- username:admin
+- password:admin
 
 Compare using Normal account
-
-username:lorem
-
-password:lorem
+- username:lorem
+- password:lorem
 
 ## Features
 - Users can Create an account and log into their accounts
