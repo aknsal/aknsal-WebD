@@ -1,10 +1,7 @@
 require("dotenv").config();
 const express = require("express");
-const mongoose = require("mongoose");
 const session = require("express-session");
 const passport = require("passport");
-const ejs = require("ejs");
-var crypto = require("crypto");
 const routes = require("./routes/index");
 const userRoutes = require("./routes/userRoutes");
 const postRoutes = require("./routes/postRoutes");
@@ -12,26 +9,10 @@ const likePostRoutes = require("./routes/likePostRoutes");
 const commentRoutes = require("./routes/commentRoutes");
 const connection = require("./config/database");
 var methodOverride = require("method-override");
-
-// Package documentation - https://www.npmjs.com/package/connect-mongo
 const MongoStore = require("connect-mongo");
 
 // Need to require the entire Passport config module so app.js knows about it
 require("./config/passport");
-
-// Set Up mongoose
-const connectionURL = process.env.MONGODB_STRING;
-mongoose
-  .connect(connectionURL, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  })
-  .then(() => console.log("connected to Database"))
-  .catch((err) => console.log(err));
-
-/**
- * -------------- GENERAL SETUP ----------------
- */
 
 // Gives us access to variables set in the .env file via `process.env.VARIABLE_NAME` syntax
 
@@ -97,4 +78,6 @@ app.use((req, res) => {
  */
 
 // Server listens on http://localhost:3000
-app.listen(process.env.PORT || 3000);
+app.listen(process.env.PORT || 3000, () => {
+  console.log("listening on port 3000");
+});

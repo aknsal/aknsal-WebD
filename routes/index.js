@@ -2,7 +2,6 @@ const router = require("express").Router();
 const passport = require("passport");
 const genPassword = require("../utils/passwordUtils").genPassword;
 
-
 const isAuth = require("../middleware/authMiddleware").isAuth;
 const connection = require("../config/database");
 const User = connection.models.User;
@@ -34,7 +33,6 @@ router.get("/login-failure", (req, res, next) => {
 //-----------NewsFeed Page---------------
 
 router.get("/newsfeed", isAuth, async (req, res, next) => {
-
   try {
     const posts = await Post.find();
     res.render("newsfeed", {
@@ -43,11 +41,9 @@ router.get("/newsfeed", isAuth, async (req, res, next) => {
       currentUser: req.user,
     });
   } catch (error) {}
-
 });
 
 // ----------------------- POST METHODS ---------------------------------
-
 
 //---------Login User---------------------------------
 
@@ -65,7 +61,6 @@ function isUserNameValid(username) {
   return valid;
 }
 
-
 // -------------Register account -----------------
 
 router.post("/register", async (req, res, next) => {
@@ -81,7 +76,6 @@ router.post("/register", async (req, res, next) => {
     );
   }
 
-
   try {
     const saltHash = genPassword(req.body.password);
     const salt = saltHash.salt;
@@ -91,13 +85,14 @@ router.post("/register", async (req, res, next) => {
       username: req.body.username,
       hash: hash,
       salt: salt,
-      isAdmin: false,
+      isAdmin: true,
       fName: req.body.fName,
       lName: req.body.lName,
       email: req.body.email,
       dob: req.body.dob,
       location: req.body.location,
-      avatar: "https://res.cloudinary.com/dm7azk7jr/image/upload/v1626459235/oceqllreeschdwal1uyg.jpg",
+      avatar:
+        "https://res.cloudinary.com/dm7azk7jr/image/upload/v1626459235/oceqllreeschdwal1uyg.jpg",
     });
 
     // Save user
@@ -109,7 +104,6 @@ router.post("/register", async (req, res, next) => {
       '<h4>Username Already Exist. <a href="/register">Try again</a> with a different username</h4>'
     );
   }
-
 });
 
 //-----------Logout User----------
@@ -118,7 +112,5 @@ router.post("/logout", (req, res, next) => {
   req.logout();
   res.redirect("/login");
 });
-
-
 
 module.exports = router;

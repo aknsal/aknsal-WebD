@@ -3,7 +3,6 @@ const LocalStrategy = require("passport-local").Strategy;
 const connection = require("./database");
 const User = connection.models.User;
 const validPassword = require("../utils/passwordUtils").validPassword;
-const bodyParser = require("body-parser");
 
 const verifyCallback = (username, password, done) => {
   User.findOne({

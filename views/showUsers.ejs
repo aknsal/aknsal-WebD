@@ -1,41 +1,47 @@
-<%-include("./partials/header")%>
-
-<%-include("./partials/navbar")%>
+<%-include("./partials/header")%> <%-include("./partials/navbar")%>
 
 <div class="container container-found-users">
-    <br />
+  <br />
 
+  <!-------  Users Found  --------->
+  <%if(foundUsers.length===0){%>
+  <h3 style="text-align: center">No Results recived</h3>
+  <%}%> <%for(let i=(foundUsers.length-1);i>=0 ;i--){%>
 
+  <div class="post-card">
+    <div class="user-info" style="max-width: 400px">
+      <a href="/user/profile/<%=foundUsers[i].username%>">
+        <img
+          src="<%=foundUsers[i].avatar%>"
+          alt="User Profile Pic"
+          height="50px"
+          width="50px"
+          class="profile-image"
+        />
+      </a>
 
+      <div
+        style="
+          display: flex;
+          flex-direction: column;
+          justify-content: flex-start;
+        "
+      >
+        <a href="/user/profile/<%=foundUsers[i].username%>" class="post-name">
+          <h5><%=foundUsers[i].fName %> <%=foundUsers[i].lName %></h5>
+        </a>
 
-    <!-------  Users Found  --------->
-
-    <%for(let i=(foundUsers.length-1);i>=0 ;i--){%>
-
-    <div class="post-card">
-        <div class="user-info" style="max-width: 400px;">
-            <a href="/user/profile/<%=foundUsers[i].username%>">
-                <img src="<%=foundUsers[i].avatar%>" alt="User Profile Pic" height="50px" width="50px"
-                    class="profile-image" />
-            </a>
-
-            <div style="display: flex; flex-direction: column; justify-content: flex-start;">
-                <a href="/user/profile/<%=foundUsers[i].username%>" class="post-name">
-                    <h5><%=foundUsers[i].fName %> <%=foundUsers[i].lName %> </h5>
-
-                </a>
-
-                <a href="/user/profile/<%=foundUsers[i].username%>" style="text-decoration: none;">
-                    <h6>@<%=foundUsers[i].username%></h6>
-                </a>
-            </div>
-        </div>
-
-
-
+        <a
+          href="/user/profile/<%=foundUsers[i].username%>"
+          style="text-decoration: none"
+        >
+          <h6>@<%=foundUsers[i].username%></h6>
+        </a>
+      </div>
     </div>
-
-    <%}%>
   </div>
 
-  <%-include("./partials/footer")%>
+  <%}%>
+</div>
+
+<%-include("./partials/footer")%>
