@@ -85,7 +85,7 @@ router.post("/register", async (req, res, next) => {
       username: req.body.username,
       hash: hash,
       salt: salt,
-      isAdmin: true,
+      isAdmin: false,
       fName: req.body.fName,
       lName: req.body.lName,
       email: req.body.email,
