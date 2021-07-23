@@ -244,11 +244,11 @@ This salt and hash is stored in user database as passwords
 > More about [pbkdf2](https://www.geeksforgeeks.org/node-js-crypto-pbkdf2-method/)
 
 ## Verify Password
-Salt, hash, and password are passes as parameters in `verifypassword()`. A hash is generated using password and salt ans is mathced with the hash already present in adtebase if they are same user is authenticated.
+Salt, hash, and password are passed as parameters in `verifypassword()`. A hash is generated using password and salt and is matched with the hash already present in the database. If they are same, user is authenticated.
 
 
 ## Getting a User Profile
-We can get a user profile by the route `/user/profile/{username}`. where `username` is the username of user. To get only the posts of one user first a search query is made in user collection using the `model.findOne()` method by the parameter of username to get the user. Then another query is made in posts collection by `model.find()` method by passing the parameter as `{userId : user._id}` which gives an array of posts by that user. This is all done in a try catch block.
+We can get a user profile by the route `/user/profile/{username}`. where `username` is the username of user. To get only the posts of one user first a search query is made in user collection using the `model.findOne()` method by the parameter of username to get the user. Then another query is made in posts collection by `model.find()` method by passing the parameter as `{userId : user._id}` which gives an array of all the posts by that user. This is all done in a try catch block.
 ```javascript
 try {
         let authenticated = false;  //initially user will be unauthenticated 
@@ -273,7 +273,7 @@ try {
 ```
 
 ## Admin Privellages
-If a user is an admin he can edit and delete his put but if someone posts or comments vulgur content, an admin can **delete** the post or comment directly. This made by statement where user can be authenticated (Logged in) or can be an admin
+If a user is an admin he can edit and delete his put but if someone posts or comments vulgur content, an admin can **delete** the post or comment directly. This is acheived by an OR oprator where user can be authenticated (Logged in) or can be an admin
 ```javascript
 if (post.userId.toString() === req.user._id.toString() || req.user.isAdmin) {
             await Post.findByIdAndDelete(post._id);
@@ -282,15 +282,15 @@ if (post.userId.toString() === req.user._id.toString() || req.user.isAdmin) {
         }
 ```
 Try with admin credentials
-username:admin
-password:admin
+- username:admin
+- password:admin
 
 Compare using Normal account
-username:lorem
-password:lorem
+- username:lorem
+- password:lorem
 
 
-> By default, a normal account is created
+> By default, a non-admin account is created
 
 Here if the userId stored in the post to be deleted is equal to the logged in user he/she is authenticated and can delete a post also there is an or condition that if the current user (logged in user) is an admin he can delete the post.
 
